@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div class="col-sm-12 text-center">
-                                        <p>Already have an account? <a href="<?= base_url('login') ?>"
+                                        <p>Already have an account? <a href="<?= base_url('admin/login') ?>"
                                                 class="text-info ml-1">Sign In</a></p>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                 // console.log(formdata);
                 $.ajax({
                     method: "POST",
-                    url: "<?= base_url('signup') ?>",
+                    url: "<?= base_url('admin/signup') ?>",
                     data: formdata,
                     dataType: 'json',
                     success: function (response) {

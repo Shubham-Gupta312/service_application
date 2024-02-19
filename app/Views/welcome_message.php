@@ -31,20 +31,26 @@
                                         <h4>Registration Form</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <form id="registerForm">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="name">Name</label>
                                                         <input type="text" class="form-control" id="name" name="name"
                                                             placeholder="Enter your name">
+                                                        <div class="invalid-feedback" class="text-danger" id="name_msg">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="mobile">Mobile Number</label>
                                                         <input type="tel" class="form-control" id="mobile" name="mobile"
-                                                            placeholder="Enter your mobile number">
+                                                            placeholder="Enter your mobile number" min="0"
+                                                            maxlength="10" minlength="10" pattern="/^-?\d+\.?\d*$/"
+                                                            onkeypress="if(this.value.length==10) return false;">
+                                                        <div class="invalid-feedback" class="text-danger"
+                                                            id="mobile_msg"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -53,10 +59,12 @@
                                                         <select class="form-control" id="gender" name="gender">
                                                             <option value="" disabled selected>Select your gender
                                                             </option>
-                                                            <option value="male">Male</option>
-                                                            <option value="female">Female</option>
-                                                            <option value="other">Other</option>
+                                                            <option name="gender" value="male">Male</option>
+                                                            <option name="gender" value="female">Female</option>
+                                                            <option name="gender" value="other">Other</option>
                                                         </select>
+                                                        <div class="invalid-feedback" class="text-danger"
+                                                            id="gender_msg"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,19 +72,26 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="aadhar">Aadhar Number</label>
-                                                        <input type="text" class="form-control" id="aadhar" name="aadhar"
-                                                            placeholder="Enter your Aadhar number">
+                                                        <input type="text" class="form-control" id="aadhar"
+                                                            name="aadhar" placeholder="Enter your Aadhar number" min="0"
+                                                            maxlength="12" minlength="12" pattern="/^-?\d+\.?\d*$/"
+                                                            onkeypress="if(this.value.length==12) return false;">
+                                                        <div class="invalid-feedback" class="text-danger"
+                                                            id="aadhar_msg"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="address">Address</label>
-                                                        <textarea class="form-control" id="address" name="address" rows="1"
-                                                            placeholder="Enter your address"></textarea>
+                                                        <textarea class="form-control" id="address" name="address"
+                                                            rows="1" placeholder="Enter your address"></textarea>
+                                                        <div class="invalid-feedback" class="text-danger"
+                                                            id="address_msg"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" id="save" name="save" class="btn btn-primary">Submit</button>
+                                            <button type="submit" id="save" name="save"
+                                                class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -86,7 +101,7 @@
                 </div>
                 <!-- End Customer Form -->
                 <!-- table list users  -->
-                <table class="table table-bordered table-hover mt-3">
+                <table class="table table-bordered table-hover mt-3" id="userData">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -99,48 +114,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>97947197149</td>
-                            <td>Male</td>
-                            <td>xyz city, state, zip code</td>
-                            <td>0987 6543 1234</td>
-                            <td>
-                                <button class="btn btn-outline-warning"><i class="bi bi-eye-fill"></i></button>
-                                <button class="btn btn-outline-success"><i class="bi bi-plus-lg"></i></button>
-                                <button class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>97947197149</td>
-                            <td>Male</td>
-                            <td>xyz city, state, zip code</td>
-                            <td>0987 6543 1234</td>
-                            <td>
-                                <button class="btn btn-outline-warning"><i class="bi bi-eye-fill"></i></button>
-                                <button class="btn btn-outline-success"><i class="bi bi-plus-lg"></i></button>
-                                <button class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry the Bird</td>
-                            <td>97947197149</td>
-                            <td>Male</td>
-                            <td>xyz city, state, zip code</td>
-                            <td>0987 6543 1234</td>
-                            <td>
-                                <button class="btn btn-outline-warning"><i class="bi bi-eye-fill"></i></button>
-                                <button class="btn btn-outline-success"><i class="bi bi-plus-lg"></i></button>
-                                <button class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></i></button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -149,11 +122,80 @@
 
     <script>
         $(document).ready(function () {
+            // OPEN REGISTRATION FORM
             $('#customer-form').hide();
             $('#add_customer').click(function (e) {
                 e.preventDefault();
                 // console.log('clicked');
                 $('#customer-form').show();
+            });
+            // SAVE USER INFO
+            $('#save').click(function (e) {
+                e.preventDefault();
+                // console.log('clicked');
+                var formData = $('#registerForm').serialize();
+                // console.log(formData);
+                $.ajax({
+                    method: "POST",
+                    url: "<?= base_url('add_userdata') ?>",
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+                        // console.log(response);
+                        if (response.status == 200) {
+                            // console.log(response)
+                            $('#customer-form').hide();
+                            $('input').val('');
+                            table.ajax.reload(null, false);
+                        } else {
+                            var errors = response.errors;
+                            for (const key in errors) {
+                                document.getElementById(key).classList.add('is-invalid');
+                                document.getElementById(key + '_msg').innerHTML = errors[key];
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+        // fetch user data
+        jQuery(document).ready(function ($) {
+            var table = $('#userData').DataTable({
+                processing: true,
+                serverSide: true,
+                paging: true,
+                "fnCreatedRow": function (row, data, index) {
+                    var pageInfo = table.page.info();
+                    var currentPage = pageInfo.page;
+                    var pageLength = pageInfo.length;
+                    var rowNumber = index + 1 + (currentPage * pageLength);
+                    $('td', row).eq(0).html(rowNumber);
+                },
+                ajax: {
+                    url: "<?= base_url('fetchUserData') ?>",
+                    method: 'GET',
+                },
+                drawCallback: function (settings) {
+                    // console.log('Table Redrwan', settings);
+                    table.rows().every(function (index, element) {
+                        // Get the node (HTML element) for the row
+                        var rowNode = this.node();
+                        // console.log(rowNode)
+                        // Get text content of the fifth column (index 5)
+                        var fifthColumn = $(rowNode).find('td:eq(5)'); // Select the fifth column (index 5)
+                        var aadharNumber = fifthColumn.text(); // Extract text content
+
+                        // Get last four digits of Aadhar number
+                        var lastFourDigits = aadharNumber.slice(-4);
+
+                        // Mask all but the last four digits
+                        var maskedAadhar = "XXXX-XXXX-" + lastFourDigits; // Replace 'XXXX' with appropriate masking characters
+
+                        // Set the masked Aadhar number as the new text content of the cell
+                        fifthColumn.text(maskedAadhar);
+                    });
+                }
             });
         });
     </script>
