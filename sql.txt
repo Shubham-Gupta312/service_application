@@ -15,3 +15,14 @@ CREATE TABLE userData(
     address VARCHAR(200) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE installment_details(
+	id INT(12) AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(128) NOT NULL,
+    installment VARCHAR(15) NOT NULL,
+    amount VARCHAR(128) NOT NULL,
+    payment_date VARCHAR(128) NOT NULL,
+    mode_payment VARCHAR(128) NOT NULL,
+    transaction_id VARCHAR(150) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

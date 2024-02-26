@@ -54,6 +54,13 @@
         input {
             color: #fff;
         }
+
+        .installment_data{
+            max-width: 70%;
+        }
+        #installmentTable{
+            width: 100%;
+        }
     </style>
 </head>
 

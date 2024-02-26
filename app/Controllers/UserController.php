@@ -1,30 +1,9 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Libraries\Hash;
 class UserController extends BaseController
 {
-    private function encryptAadhar($aadhar)
-    {
-        // Encryption key (replace with your own key)
-        $key = '1234@Sashi&Silver$@2709';
-
-        // Encrypt Aadhar number
-        $encryptedAadhar = openssl_encrypt($aadhar, 'AES-256-CBC', $key, 0, substr(md5($key), 0, 16));
-
-        return $encryptedAadhar;
-    }
-
-    private function decryptAadhar($aadhar)
-    {
-        // Decryption key (must match the key used for encryption)
-        $key = '1234@Sashi&Silver$@2709';
-
-        // Decrypt Aadhar number
-        $decryptedAadhar = openssl_decrypt($aadhar, 'AES-256-CBC', $key, 0, substr(md5($key), 0, 16));
-
-        return $decryptedAadhar;
-    }
     public function add_userdata()
     {
         $validation = $this->validate([
@@ -80,7 +59,7 @@ class UserController extends BaseController
             $address = $this->request->getPost('address');
 
             // Encrypt Aadhar number
-            $encryptedAadhar = $this->encryptAadhar($aadhar);
+            $encryptedAadhar = Hash::encryptAadhar($aadhar);
 
 
             $data = [
@@ -132,7 +111,7 @@ class UserController extends BaseController
 
         foreach ($data['user'] as $row) {
             // Decrypt Aadhar number
-            $aadhar = $this->decryptAadhar($row['aadhar']);
+            $aadhar = Hash::decryptAadhar($row['aadhar']);
 
             $associativeArray[] = array(
                 0 => $row['id'],
@@ -141,10 +120,10 @@ class UserController extends BaseController
                 3 => $row['gender'],
                 4 => $row['address'],
                 5 => $aadhar,
-                6 => '<button class="btn btn-outline-warning"><i class="bi bi-eye-fill"></i></button>
-                <button class="btn btn-outline-success"><i class="bi bi-plus-lg"></i></button>
-                <button class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></button>
-                <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></i></button>'
+                6 => '<button class="btn btn-outline-warning see-data" id="see-data" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i></button>
+                <button class="btn btn-outline-success add_installment" id="add_installment" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="bi bi-plus-lg"></i></button>
+                <button class="btn btn-outline-info edit" id="edit"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-outline-danger delete" id="delete"><i class="bi bi-trash"></i></i></button>'
 
             );
         }
